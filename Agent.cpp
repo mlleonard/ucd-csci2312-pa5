@@ -29,4 +29,24 @@ namespace Gaming{
             finish();
         }
     }
+
+    Piece &Agent::operator*(Piece &other)
+    {
+//        if(other.getType() == FOOD || other.getType() == ADVANTAGE)
+//        {
+//            other.getType()
+//
+//            Resource * ptr;
+//            ptr = new Resource(this->__game, this->getPosition(), other.); // todo this should call to other default constructor
+//            interact(ptr);
+//        }
+//        else if(other.getType() == SIMPLE || other.getType() == STRATEGIC)
+//        {
+//            Agent * ptr;
+//            ptr = new Agent(this->__game, this->getPosition(), __energy);
+//            interact(other.);
+//
+//        }
+        return <#initializer#>;
+    }
 };
