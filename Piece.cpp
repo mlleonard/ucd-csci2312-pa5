@@ -15,4 +15,10 @@ namespace Gaming{
         __position = p;
 
     };
+
+    Piece::~Piece()
+    {
+        std::cout<< "Base destructor called" << std::endl;
+
+    }
 };
