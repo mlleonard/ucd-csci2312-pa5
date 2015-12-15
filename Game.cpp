@@ -453,4 +453,71 @@ namespace Gaming{
 
         return true;
     }
+
+    const Position Game::move(const Position &pos, const ActionType &ac) const
+    {
+        Position *ptr;
+
+        if( isLegal(ac, pos) )
+        {
+            unsigned int vecPos = (__width*(pos.x-1)+pos.y);
+            //auto it = __grid[vecPos];
+            if( ac == NW )
+            {
+                ptr = new Position(((pos.x)-1), ((pos.y) - 1));
+            }
+            else if( ac == N )
+            {
+                ptr = new Position(((pos.x)-1), pos.y);
+            }
+            else if( ac == NE)
+            {
+                ptr = new Position(((pos.x)-1), ((pos.y)+1));
+            }
+            else if( ac == W )
+            {
+                ptr = new Position((pos.x), ((pos.y)-1));
+            }
+            else if( ac == STAY )
+            {
+                ptr = new Position(pos.x, pos.y);
+            }
+            else if( ac == E )
+            {
+                ptr = new Position(pos.x, ((pos.y)+1));
+            }
+            else if( ac == SW )
+            {
+                ptr = new Position(((pos.x)+1), ((pos.y)-1));
+            }
+            else if( ac == S )
+            {
+                ptr = new Position(((pos.x)+1), pos.y);
+            }
+            else if( ac == SE )
+            {
+                ptr = new Position(((pos.x)+1), ((pos.y)+1));
+            }
+
+        }
+        return *ptr;
+    }
+
+    void Game::round()
+    {
+        auto it = __grid.begin();
+
+        for(; it != __grid.end(); it++)
+        {
+            (*it)->getTurned();
+            (*it)->setTurned(true);
+
+        }
+
+    }
+
+    void Game::play(bool verbose)
+    {
+
+    }
 };

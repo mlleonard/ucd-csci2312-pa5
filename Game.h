@@ -83,7 +83,7 @@ namespace Gaming {
 
         bool isLegal(const ActionType &ac, const Position &pos) const;
         const Position move(const Position &pos, const ActionType &ac) const; // note: assumes legal, use with isLegal()
-        void round();   // play a single round
+        void round();   // todo play a single round
         void play(bool verbose = false);    // play game until over
 
 //        const Agent &winner(); // what if no winner or multiple winners?
