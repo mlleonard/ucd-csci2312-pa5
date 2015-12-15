@@ -152,4 +152,69 @@ namespace Gaming{
         }
         return count;
     }
+
+    unsigned int Game::getNumSimple() const
+    {
+        unsigned int count = 0;
+        auto it = __grid.begin();
+
+        for(; it!=__grid.end(); it++)
+        {
+            if((*it)->getType() == SIMPLE)
+            {
+                count ++;
+            }
+
+        }
+        return count;
+    }
+
+
+    unsigned int Game::getNumStrategic() const
+    {
+        unsigned int count = 0;
+        auto it = __grid.begin();
+
+        for(; it!=__grid.end(); it++)
+        {
+            if((*it)->getType() == STRATEGIC)
+            {
+                count ++;
+            }
+
+        }
+        return count;
+    }
+
+
+    unsigned int Game::getNumResources()
+    {
+        unsigned int count = 0;
+        auto it = __grid.begin();
+
+        for(; it!=__grid.end(); it++)
+        {
+            if((*it)->getType() == FOOD || (*it)->getType() == ADVANTAGE)
+            {
+                count ++;
+            }
+
+        }
+        return count;
+    }
+
+    bool Game::addSimple(const Position &position)
+    {
+        unsigned int vectorPos;
+        vectorPos = (__width*((position.x)-1)+(position.y));
+        if(__grid[vectorPos] != nullptr)
+        {
+            return false;
+        }
+        else
+        {
+            new Simple(*this, position, STARTING_AGENT_ENERGY);
+        }
+        return true;
+    }
 };
