@@ -217,4 +217,53 @@ namespace Gaming{
         }
         return true;
     }
+
+    bool Game::addSimple(unsigned x, unsigned y)
+    {
+        unsigned int vectorPos;
+        vectorPos = (__width*(x-1)+y);
+        if(__grid[vectorPos] != nullptr)
+        {
+            return false;
+        }
+        else
+        {
+            Position p(x,y);
+            new Simple(*this, p, STARTING_AGENT_ENERGY);
+        }
+        return true;
+    }
+
+
+    bool Game::addStrategic(const Position &position, Strategy *s)
+    {
+        unsigned int vectorPos;
+        vectorPos = (__width*((position.x)-1)+(position.y));
+        if(__grid[vectorPos] != nullptr)
+        {
+            return false;
+        }
+        else
+        {
+            new Strategic(*this, position, STARTING_AGENT_ENERGY, s);
+        }
+        return true;
+    }
+
+
+    bool Game::addStrategic(unsigned x, unsigned y, Strategy *s)
+    {
+        unsigned int vectorPos;
+        vectorPos = (__width*(x-1)+y);
+        if(__grid[vectorPos] != nullptr)
+        {
+            return false;
+        }
+        else
+        {
+            Position p(x,y);
+            new Strategic(*this, p, STARTING_AGENT_ENERGY, s);
+        }
+        return true;
+    }
 };
