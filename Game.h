@@ -48,10 +48,10 @@ namespace Gaming {
         static const double STARTING_RESOURCE_CAPACITY;
 
         Game(); //todo finish
-        Game(unsigned width, unsigned height, bool manual = true); // todo finish note: manual population by default
+        Game(unsigned width, unsigned height, bool manual = true);
         Game(const Game &another); //todo
         Game &operator=(const Game &other) = delete;
-        ~Game();    //todo destruct
+        ~Game();
 
         // getters
         unsigned int getWidth() const { return __width; }

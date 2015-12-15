@@ -7,6 +7,7 @@
 #include "Simple.h"
 #include "Advantage.h"
 #include "Food.h"
+#include <iterator>
 
 namespace Gaming{
 
@@ -90,22 +91,6 @@ namespace Gaming{
         int size = (__width*__height);
 
         __grid.assign(size, nullptr);
-        int menuSelection = 0;
-
-        while(menuSelection !=9)
-
-        {
-            std::cout << "1.) Add Simple Agent" << std::endl;
-            std::cout << "2.) Add Strategic Agent" << std::endl;
-            std::cout << "3.) Add Food Agent" << std::endl;
-            std::cout << "4.) Add Advantage Agent" << std::endl;
-            switch(menuSelection)
-                case 1:
-                    std::cout << "Add Simple Agent" << std::endl;
-
-                break;
-
-        }
     }
 
     Game::Game(const Game &another)
@@ -122,9 +107,12 @@ namespace Gaming{
     {
         unsigned int numPieces = 0;
 
-        std::vector<Piece *>::iterator it = __grid.begin();
+        //std::vector<Piece *>::iterator it;
+        //it = __grid.begin();
 
-        while(it = __grid.begin(); it!=__grid.end(); it++)
+        auto it = __grid.begin();
+
+        for(; it!=__grid.end(); it++)
         {
             if(*it != nullptr)
             {
@@ -135,4 +123,33 @@ namespace Gaming{
         return 0;
     }
 
+    Game::~Game()
+    {
+        auto it = __grid.begin();
+
+        for(; it!=__grid.end(); it++)
+        {
+            if(*it != nullptr)
+            {
+                delete *it;
+            }
+        }
+
+    }
+
+    unsigned int Game::getNumAgents() const
+    {
+        unsigned int count = 0;
+        auto it = __grid.begin();
+
+        for(; it!=__grid.end(); it++)
+        {
+            if((*it)->getType() == SIMPLE || (*it)->getType() == STRATEGIC)
+            {
+                count ++;
+            }
+
+        }
+        return count;
+    }
 };
