@@ -332,7 +332,6 @@ namespace Gaming{
     const Surroundings Game::getSurroundings(const Position &pos) const
     {
         Surroundings s1;
-        int num = 0;
         int count = 0;
         unsigned int vectorPos;
         vectorPos = (__width*((pos.x)-1)+(pos.y));
@@ -363,5 +362,95 @@ namespace Gaming{
 
 
         return Gaming::Surroundings();
+    }
+
+    const ActionType Game::reachSurroundings(const Position &from, const Position &to)
+    {
+        if(to.x == ((from.x)-1))
+        {
+            if(to.y == ((from.y)-1))
+            {
+                return NW;
+            }
+            else if( to.y == from.y)
+            {
+                return N;
+            }
+            else
+            {
+                return NE;
+            }
+        }
+
+        if(to.x == ((from.x)+1))
+        {
+            if(to.y == ((from.y)-1))
+            {
+                return SW;
+            }
+            else if( to.y == from.y)
+            {
+                return S;
+            }
+            else
+            {
+                return SE;
+            }
+        }
+
+        else if(to.x == from.x)
+        {
+            if(to.y == ((from.y)-1))
+            {
+                return W;
+            }
+            else if(to.y == from.y)
+            {
+                return STAY;
+            }
+            else
+            {
+                return E;
+            }
+        }
+
+        return STAY;
+    }
+
+    bool Game::isLegal(const ActionType &ac, const Position &pos) const
+    {
+        if (pos.x == 1 )
+        {
+            if( ac == NW || ac == N || ac == NE)
+            {
+                return false;
+            }
+        }
+
+        if (pos.x == __width)
+        {
+            if( ac == SW || ac == S || ac == SE)
+            {
+                return false;
+            }
+        }
+
+        if (pos.y == 1)
+        {
+            if( ac == NW || ac == W || ac == SW)
+            {
+                return false;
+            }
+        }
+
+        if (pos.y == __height)
+        {
+            if( ac == NE || ac == E || ac == SE)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 };
