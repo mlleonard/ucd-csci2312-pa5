@@ -266,4 +266,102 @@ namespace Gaming{
         }
         return true;
     }
+
+    bool Game::addFood(const Position &position)
+    {
+        unsigned int vectorPos;
+        vectorPos = (__width*((position.x)-1)+(position.y));
+        if(__grid[vectorPos] != nullptr)
+        {
+            return false;
+        }
+        else
+        {
+            new Food(*this, position, STARTING_AGENT_ENERGY);
+        }
+        return true;
+    }
+
+    bool Game::addFood(unsigned x, unsigned y)
+    {
+        unsigned int vectorPos;
+        vectorPos = (__width*(x-1)+y);
+        if(__grid[vectorPos] != nullptr)
+        {
+            return false;
+        }
+        else
+        {
+            Position p(x,y);
+            new Food(*this, p, STARTING_AGENT_ENERGY);
+        }
+        return true;
+    }
+
+    bool Game::addAdvantage(const Position &position)
+    {
+        unsigned int vectorPos;
+        vectorPos = (__width*((position.x)-1)+(position.y));
+        if(__grid[vectorPos] != nullptr)
+        {
+            return false;
+        }
+        else
+        {
+            new Advantage(*this, position, STARTING_AGENT_ENERGY);
+        }
+        return true;
+    }
+
+    bool Game::addAdvantage(unsigned x, unsigned y)
+    {
+        unsigned int vectorPos;
+        vectorPos = (__width*(x-1)+y);
+        if(__grid[vectorPos] != nullptr)
+        {
+            return false;
+        }
+        else
+        {
+            Position p(x,y);
+            new Food(*this, p, STARTING_AGENT_ENERGY);
+        }
+        return true;
+    }
+
+    const Surroundings Game::getSurroundings(const Position &pos) const
+    {
+        Surroundings s1;
+        int num = 0;
+        int count = 0;
+        unsigned int vectorPos;
+        vectorPos = (__width*((pos.x)-1)+(pos.y));
+
+        auto it = __grid[(vectorPos-(__width+1))];
+
+        while(count <4)
+        {
+            s1.array[count] = ((it)->getType());
+            it++;
+        }
+
+        it = __grid[(vectorPos-1)];
+
+        while(count <7)
+        {
+            s1.array[count] = ((it)->getType());
+            it++;
+        }
+
+        it = __grid[(vectorPos+(__width-1))];
+
+        while(count <10)
+        {
+            s1.array[count] = ((it)->getType());
+            it++;
+        }
+
+
+        return Gaming::Surroundings();
+    }
 };
