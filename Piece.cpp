@@ -21,4 +21,9 @@ namespace Gaming{
         std::cout<< "Base destructor called" << std::endl;
 
     }
+
+    std::ostream &Gaming::operator<<(std::ostream &os, const Piece &piece)
+    {
+        return os;
+    }
 };

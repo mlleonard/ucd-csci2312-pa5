@@ -38,6 +38,7 @@ namespace Gaming{
 
     Piece &Agent::interact(Agent *agent)
     {
+
         if(agent->__energy == this->__energy)
         {
             this->finish();
@@ -56,9 +57,9 @@ namespace Gaming{
         return *this;
     }
 
-//    Piece &Agent::interact(Resource *resource)
-//    {
-//        this
-//        return *this;
-//    }
+    Piece &Agent::interact(Resource *resource)
+    {
+        this->addEnergy(resource->getCapacity());
+        return *this;
+    }
 };

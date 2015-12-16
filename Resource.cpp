@@ -17,4 +17,9 @@ namespace Gaming{
     {
         std::cout << "Destructing Derived Class Resource" << std::endl;
     }
+
+    double Resource::consume()
+    {
+        return 0;
+    }
 };

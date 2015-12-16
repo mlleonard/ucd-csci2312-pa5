@@ -7,6 +7,7 @@
 
 #include "Game.h"
 #include "Piece.h"
+#include "Advantage.h"
 
 namespace Gaming {
 
