@@ -21,7 +21,8 @@ namespace Gaming{
         os<<SIMPLE_ID<<this->__id;
     }
 
-    ActionType Simple::takeTurn(const Surroundings &s) const {
-        return S;
-    }
+//    ActionType Simple::takeTurn(const Surroundings &s) const
+//    {
+//        return ;
+//    }
 };

@@ -25,6 +25,6 @@ namespace Gaming{
 
     ActionType Strategic::takeTurn(const Surroundings &s) const
     {
-        return S;
+        return (*__strategy)(s);
     }
 };
