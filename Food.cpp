@@ -7,8 +7,18 @@
 namespace Gaming
 {
 
+    const char Food::FOOD_ID = 'F';
+
     Food::Food(const Game &g, const Position &p, double capacity) : Resource(g,p,capacity)
+    { }
+
+    Food::~Food()
     {
-        capacity =
+        std::cout<< "Calling destructor for derived class Food" << std::endl;
+    }
+
+    void Food::print(std::ostream &os) const
+    {
+
     }
 };
