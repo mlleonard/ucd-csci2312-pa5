@@ -8,6 +8,7 @@
 #include "Advantage.h"
 #include "Food.h"
 #include <iterator>
+#include <tkDecls.h>
 
 namespace Gaming{
 
@@ -50,7 +51,7 @@ namespace Gaming{
             {
                 Position pos(i / __width, i % __width);
                 __grid[i] = new Simple(*this, pos, Game::STARTING_AGENT_ENERGY);
-                numStrategic --;
+                numSimple --;
             }
         }
 
@@ -105,10 +106,6 @@ namespace Gaming{
     }
 
 
-//    Game::~Game()
-//    {
-//        delete Game;
-//    }
     unsigned int Game::getNumPieces() const
     {
         unsigned int numPieces = 0;
@@ -131,15 +128,15 @@ namespace Gaming{
 
     Game::~Game()
     {
-        auto it = __grid.begin();
-
-        for(; it!=__grid.end(); it++)
-        {
-            if(*it != nullptr)
-            {
-                delete *it;
-            }
-        }
+//        auto it = __grid.begin();
+//
+//        for(; it!=__grid.end(); it++)
+//        {
+//            if(*it != nullptr)
+//            {
+//                delete *it;
+//            }
+//        }
 
     }
 
@@ -525,5 +522,21 @@ namespace Gaming{
     void Game::play(bool verbose)
     {
 
+    }
+
+    std::ostream& operator<<(std::ostream &os, const Game &game)
+    {
+        int pos = 0;
+
+        os<<"Round" << game.__round << std::endl;
+        for(int i = 0; i < game.__height; i++)
+        {
+            for (int j = 0; i < game.__width; j++)
+            {
+
+            }
+        }
+
+        return os;
     }
 };

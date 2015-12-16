@@ -16,7 +16,7 @@ namespace Gaming{
 
     Agent::~Agent()
     {
-        std::cout << "Calling derived destructor" << std::endl;
+//        std::cout << "Calling derived destructor" << std::endl;
     }
 
     void Agent::age()
@@ -59,7 +59,7 @@ namespace Gaming{
 
     Piece &Agent::interact(Resource *resource)
     {
-        this->addEnergy(resource->getCapacity());
+        this->addEnergy(resource->consume());
         return *this;
     }
 };

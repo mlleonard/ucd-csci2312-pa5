@@ -13,7 +13,7 @@ namespace Gaming {
 
     Advantage::~Advantage()
     {
-        std::cout << "Calling destructor for derived class Food" << std::endl;
+//        std::cout << "Calling destructor for derived class Food" << std::endl;
     }
 
     void Advantage::print(std::ostream &os) const

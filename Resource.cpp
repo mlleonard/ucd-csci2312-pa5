@@ -3,6 +3,7 @@
 //
 
 #include "Resource.h"
+#include "Advantage.h"
 
 namespace Gaming{
 
@@ -15,11 +16,44 @@ namespace Gaming{
 
     Resource::~Resource()
     {
-        std::cout << "Destructing Derived Class Resource" << std::endl;
+//        std::cout << "Destructing Derived Class Resource" << std::endl;
     }
 
     double Resource::consume()
     {
-        return 0;
+        double consume = (__capacity*Advantage::ADVANTAGE_MULT_FACTOR);
+        __capacity = 0;
+
+        return consume;
+    }
+
+    void Resource::age()
+    {
+        double age;
+
+        age = (__capacity/RESOURCE_SPOIL_FACTOR);
+
+        if (age == 0)
+        {
+            finish();
+        }
+    }
+
+    ActionType Resource::takeTurn(const Surroundings &s) const
+    {
+        return STAY;
+    }
+
+    Piece &Resource::operator*(Piece &other)
+    {
+        return *this;
+    }
+
+    Piece &Resource::interact(Agent *agent) {
+        return *this;
+    }
+
+    Piece &Resource::interact(Resource *resource) {
+        return *this;
     }
 };

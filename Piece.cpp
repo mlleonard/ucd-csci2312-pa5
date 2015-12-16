@@ -7,10 +7,12 @@
 
 namespace Gaming{
 
+    unsigned int Piece::__idGen = 0;
+
     Piece::Piece(const Game &g, const Position &p) : __game(g)
     {
-        __id = __idGen;
         __idGen++;
+        __id = __idGen;
         __finished = false;
         __position = p;
 
@@ -18,12 +20,13 @@ namespace Gaming{
 
     Piece::~Piece()
     {
-        std::cout<< "Base destructor called" << std::endl;
+//        std::cout<< "Base destructor called" << std::endl;
 
     }
 
-    std::ostream &Gaming::operator<<(std::ostream &os, const Piece &piece)
+    std::ostream& operator<<(std::ostream &os, const Piece &piece)
     {
+        os << piece.__id ;
         return os;
     }
 };

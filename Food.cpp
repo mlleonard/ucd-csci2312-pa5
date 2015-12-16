@@ -14,7 +14,7 @@ namespace Gaming
 
     Food::~Food()
     {
-        std::cout<< "Calling destructor for derived class Food" << std::endl;
+//        std::cout<< "Calling destructor for derived class Food" << std::endl;
     }
 
     void Food::print(std::ostream &os) const

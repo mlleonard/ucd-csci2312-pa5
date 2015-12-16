@@ -15,7 +15,7 @@ namespace Gaming{
 
     Strategic::~Strategic()
     {
-        std::cout << "Calling destructor for derived class Strategic" << std::endl;
+//        std::cout << "Calling destructor for derived class Strategic" << std::endl;
     }
 
     void Strategic::print(std::ostream &os) const
