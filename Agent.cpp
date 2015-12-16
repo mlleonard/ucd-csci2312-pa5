@@ -32,21 +32,32 @@ namespace Gaming{
 
     Piece &Agent::operator*(Piece &other)
     {
-//        if(other.getType() == FOOD || other.getType() == ADVANTAGE)
-//        {
-//            other.getType()
-//
-//            Resource * ptr;
-//            ptr = new Resource(this->__game, this->getPosition(), other.); // todo this should call to other default constructor
-//            interact(ptr);
-//        }
-//        else if(other.getType() == SIMPLE || other.getType() == STRATEGIC)
-//        {
-//            Agent * ptr;
-//            ptr = new Agent(this->__game, this->getPosition(), __energy);
-//            interact(other.);
-//
-//        }
-        return <#initializer#>;
+        return other.interact(this);
+    }
+
+    Piece &Agent::interact(Agent *agent)
+    {
+        if(agent->__energy == this->__energy)
+        {
+            this->finish();
+            agent->finish();
+        }
+        else if( agent->__energy < this->__energy)
+        {
+            this->addEnergy(agent->__energy);
+            agent->finish();
+        }
+        else
+        {
+            agent->addEnergy(this->__energy);
+            this->finish();
+        }
+        return *this;
+    }
+
+    Piece &Agent::interact(Resource *resource)
+    {
+        this
+        return *this;
     }
 };
