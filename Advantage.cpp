@@ -14,4 +14,9 @@ namespace Gaming {
     {
         std::cout << "Calling destructor for derived class Food" << std::endl;
     }
+
+    void Advantage::print(std::ostream &os) const
+    {
+        os<<ADVANTAGE_ID<<this->__id;
+    }
 };

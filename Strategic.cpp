@@ -17,4 +17,14 @@ namespace Gaming{
     {
         std::cout << "Calling destructor for derived class Strategic" << std::endl;
     }
+
+    void Strategic::print(std::ostream &os) const
+    {
+        os<<STRATEGIC_ID<<this->__id;
+    }
+
+    ActionType Strategic::takeTurn(const Surroundings &s) const
+    {
+        return S;
+    }
 };

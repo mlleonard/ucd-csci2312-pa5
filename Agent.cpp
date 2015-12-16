@@ -55,9 +55,9 @@ namespace Gaming{
         return *this;
     }
 
-    Piece &Agent::interact(Resource *resource)
-    {
-        this
-        return *this;
-    }
+//    Piece &Agent::interact(Resource *resource)
+//    {
+//        this
+//        return *this;
+//    }
 };

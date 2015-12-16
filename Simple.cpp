@@ -15,4 +15,13 @@ namespace Gaming{
     {
         std::cout << "Calling destructor for derived class Simple" << std::endl;
     }
+
+    void Simple::print(std::ostream &os) const
+    {
+        os<<SIMPLE_ID<<this->__id;
+    }
+
+    ActionType Simple::takeTurn(const Surroundings &s) const {
+        return S;
+    }
 };
