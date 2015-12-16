@@ -6,6 +6,7 @@
 namespace Gaming {
 
     const char Advantage::ADVANTAGE_ID = 'D';
+    const double Advantage::ADVANTAGE_MULT_FACTOR = 2.0;
 
     Advantage::Advantage(const Game &g, const Position &p, double capacity) : Resource(g,p,capacity)
     { }
@@ -18,5 +19,19 @@ namespace Gaming {
     void Advantage::print(std::ostream &os) const
     {
         os<<ADVANTAGE_ID<<this->__id;
+    }
+
+    double Advantage::getCapacity() const
+    {
+        double capacity;
+
+        capacity = (this->__capacity/RESOURCE_SPOIL_FACTOR);
+
+        return capacity;
+    }
+
+    double Advantage::consume()
+    {
+        return Resource::consume();
     }
 };

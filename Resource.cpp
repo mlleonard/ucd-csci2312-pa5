@@ -6,6 +6,7 @@
 
 namespace Gaming{
 
+    const double Resource::RESOURCE_SPOIL_FACTOR = 1.2;
 
     Resource::Resource(const Game &g, const Position &p, double capacity) : Piece(g,p)
     {

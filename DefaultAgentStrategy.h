@@ -12,11 +12,10 @@ namespace Gaming {
     class DefaultAgentStrategy : public Strategy {
     public:
 
-        DefaultAgentStrategy();
-        ~DefaultAgentStrategy();
+        DefaultAgentStrategy() {};
+        ~DefaultAgentStrategy() {};
         ActionType operator()(const Surroundings &s) const override;
     };
-
 }
 
 #endif //PA5GAME_DEFAULTAGENTSTRATEGY_H
