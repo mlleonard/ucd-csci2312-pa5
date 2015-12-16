@@ -8,7 +8,7 @@
 #include "Advantage.h"
 #include "Food.h"
 #include <iterator>
-#include <tkDecls.h>
+#include <sstream>
 
 namespace Gaming{
 
@@ -128,15 +128,15 @@ namespace Gaming{
 
     Game::~Game()
     {
-//        auto it = __grid.begin();
-//
-//        for(; it!=__grid.end(); it++)
-//        {
-//            if(*it != nullptr)
-//            {
-//                delete *it;
-//            }
-//        }
+        auto it = __grid.begin();
+
+        for(; it!=__grid.end(); it++)
+        {
+            if(*it != nullptr)
+            {
+                delete *it;
+            }
+        }
 
     }
 
@@ -208,8 +208,9 @@ namespace Gaming{
 
     bool Game::addSimple(const Position &position)
     {
+
         unsigned int vectorPos;
-        vectorPos = (__width*((position.x)-1)+(position.y));
+        vectorPos = (__width*((position.x))+(position.y+1));
         if(__grid[vectorPos] != nullptr)
         {
             return false;
@@ -224,7 +225,7 @@ namespace Gaming{
     bool Game::addSimple(unsigned x, unsigned y)
     {
         unsigned int vectorPos;
-        vectorPos = (__width*(x-1)+y);
+        vectorPos = (__width*x+(y+1));
         if(__grid[vectorPos] != nullptr)
         {
             return false;
@@ -241,7 +242,7 @@ namespace Gaming{
     bool Game::addStrategic(const Position &position, Strategy *s)
     {
         unsigned int vectorPos;
-        vectorPos = (__width*((position.x)-1)+(position.y));
+        vectorPos = (__width*((position.x))+(position.y+1));
         if(__grid[vectorPos] != nullptr)
         {
             return false;
@@ -257,7 +258,7 @@ namespace Gaming{
     bool Game::addStrategic(unsigned x, unsigned y, Strategy *s)
     {
         unsigned int vectorPos;
-        vectorPos = (__width*(x-1)+y);
+        vectorPos = (__width*x+(y+1));
         if(__grid[vectorPos] != nullptr)
         {
             return false;
@@ -273,22 +274,22 @@ namespace Gaming{
     bool Game::addFood(const Position &position)
     {
         unsigned int vectorPos;
-        vectorPos = (__width*((position.x)-1)+(position.y));
+        vectorPos = (__width*((position.x))+(position.y+1));
         if(__grid[vectorPos] != nullptr)
         {
             return false;
         }
         else
         {
-            new Food(*this, position, STARTING_AGENT_ENERGY);
+            new Food(*this, position, STARTING_RESOURCE_CAPACITY);
         }
         return true;
     }
 
     bool Game::addFood(unsigned x, unsigned y)
     {
-        unsigned int vectorPos;
-        vectorPos = (__width*(x-1)+y);
+        unsigned int vectorPos = 0;
+        vectorPos = ((__width * x)+(y+1));
         if(__grid[vectorPos] != nullptr)
         {
             return false;
@@ -296,7 +297,7 @@ namespace Gaming{
         else
         {
             Position p(x,y);
-            new Food(*this, p, STARTING_AGENT_ENERGY);
+            new Food(*this, p, STARTING_RESOURCE_CAPACITY);
         }
         return true;
     }
@@ -304,14 +305,14 @@ namespace Gaming{
     bool Game::addAdvantage(const Position &position)
     {
         unsigned int vectorPos;
-        vectorPos = (__width*((position.x)-1)+(position.y));
+        vectorPos = (__width*((position.x))+(position.y+1));
         if(__grid[vectorPos] != nullptr)
         {
             return false;
         }
         else
         {
-            new Advantage(*this, position, STARTING_AGENT_ENERGY);
+            new Advantage(*this, position, STARTING_RESOURCE_CAPACITY);
         }
         return true;
     }
@@ -319,7 +320,7 @@ namespace Gaming{
     bool Game::addAdvantage(unsigned x, unsigned y)
     {
         unsigned int vectorPos;
-        vectorPos = (__width*(x-1)+y);
+        vectorPos = (__width*(x)+(y+1));
         if(__grid[vectorPos] != nullptr)
         {
             return false;
@@ -327,7 +328,7 @@ namespace Gaming{
         else
         {
             Position p(x,y);
-            new Food(*this, p, STARTING_AGENT_ENERGY);
+            new Food(*this, p, STARTING_RESOURCE_CAPACITY);
         }
         return true;
     }
@@ -337,29 +338,54 @@ namespace Gaming{
         Surroundings s1;
         int count = 0;
         unsigned int vectorPos;
-        vectorPos = (__width*((pos.x)-1)+(pos.y));
+
+
+        vectorPos = (this->__width*pos.x+(pos.y+1));
 
         auto it = __grid[(vectorPos-(__width+1))];
 
-        while(count <4)
+        for(count; count <= 3; count++)
         {
-            s1.array[count] = ((it)->getType());
+            if(it == nullptr)
+            {
+                s1.array[count] = EMPTY;
+            }
+            else
+            {
+                s1.array[count] = ((it)->getType());
+            }
+
             it++;
         }
 
         it = __grid[(vectorPos-1)];
 
-        while(count <7)
+        for(count; count <= 6; count++)
         {
-            s1.array[count] = ((it)->getType());
+            if(it == nullptr)
+            {
+                s1.array[count] = EMPTY;
+            }
+            else
+            {
+                s1.array[count] = ((it)->getType());
+            }
             it++;
         }
 
         it = __grid[(vectorPos+(__width-1))];
 
-        while(count <10)
+        for(count; count <= 9; count++)
         {
-            s1.array[count] = ((it)->getType());
+            if(it == nullptr)
+            {
+                s1.array[count] = EMPTY;
+            }
+
+            else
+            {
+                s1.array[count] = ((it)->getType());
+            }
             it++;
         }
 
@@ -514,29 +540,61 @@ namespace Gaming{
         {
             (*it)->getTurned();
             (*it)->setTurned(true);
-
+            if((*it)->isViable() == false)
+            {
+                delete(*it);
+            }
         }
+        for(; it != __grid.end(); it++)
+        {
+            if(*it != nullptr)
+            {
+                (*it)->age();
+                (*it)->setTurned(false);
+
+            }
+        }
+
 
     }
 
     void Game::play(bool verbose)
     {
+        __status = Status::PLAYING;
+
+        while(getNumAgents()!= 0)
+        {
+            round();
+        }
 
     }
 
     std::ostream& operator<<(std::ostream &os, const Game &game)
     {
-        int pos = 0;
-
-        os<<"Round" << game.__round << std::endl;
-        for(int i = 0; i < game.__height; i++)
+        int count = 0;
+        os<<"Round " << game.__round << std::endl;
+        for( int i = 0; i < (game.__height*game.__width); i++)
         {
-            for (int j = 0; i < game.__width; j++)
+            os << "[";
+            if(game.__grid[i] == nullptr)
             {
-
+                os << "       ";
+                count ++;
             }
-        }
+            else
+            {
+                std::cout << *game.__grid[i] << "   ";
+                count++;
+            }
+            os << "]";
 
+            if(count == game.__width)
+            {
+                std::cout << std::endl;
+                count = 0;
+            }
+
+        }
         return os;
     }
 };

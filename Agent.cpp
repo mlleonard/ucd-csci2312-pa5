@@ -21,11 +21,9 @@ namespace Gaming{
 
     void Agent::age()
     {
-        double age;
+        __energy = (__energy - AGENT_FATIGUE_RATE);
 
-        age = (__energy - AGENT_FATIGUE_RATE);
-
-        if (age == 0)
+        if (__energy == 0)
         {
             finish();
         }

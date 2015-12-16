@@ -29,11 +29,10 @@ namespace Gaming{
 
     void Resource::age()
     {
-        double age;
 
-        age = (__capacity/RESOURCE_SPOIL_FACTOR);
+        __capacity = (__capacity/RESOURCE_SPOIL_FACTOR);
 
-        if (age == 0)
+        if(__capacity == 0)
         {
             finish();
         }

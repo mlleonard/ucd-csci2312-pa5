@@ -5,6 +5,7 @@
 
 #include "ErrorContext.h"
 #include "GamingTests.h"
+#include "Game.h"
 
 using std::cout;
 using std::endl;

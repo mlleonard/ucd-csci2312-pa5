@@ -26,7 +26,8 @@ namespace Gaming{
 
     std::ostream& operator<<(std::ostream &os, const Piece &piece)
     {
-        os << piece.__id ;
+        piece.print(os);
+        //os << piece.__id ;
         return os;
     }
 };
