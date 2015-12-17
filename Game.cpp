@@ -354,6 +354,14 @@ namespace Gaming{
 
         //auto it = __grid[(vectorPos-(__width+1))];
 
+        if( vectorPos > ((x+1)*(y+1)))
+        {
+            for( int i = 0; i < (__width*__height); i++ )
+            {
+                s.array[i] = PieceType::INACCESSIBLE;
+            }
+            return Gaming::Surroundings();
+        }
 
         for(count; count < 3; count++)
         {
@@ -402,7 +410,7 @@ namespace Gaming{
 
         for(count; count < 9; count++)
         {
-            if(x == __height || x == 0 || y == __width || y == 0)
+            if(x >= __height || x <= 0 || y >= __width || y <= 0)
             {
                 s.array[count] = PieceType::INACCESSIBLE ;
             }
