@@ -62,7 +62,7 @@ namespace Gaming{
             if(__grid[i] == nullptr) //is position empty
             {
                 Position pos(i/__width, i % __width);
-                __grid[i] = new Advantage(*this, pos, Game::STARTING_AGENT_ENERGY);
+                __grid[i] = new Advantage(*this, pos, Game::STARTING_RESOURCE_CAPACITY);
                 numAdvantages--;
             }
         }
@@ -74,35 +74,38 @@ namespace Gaming{
             if(__grid[i] == nullptr) //is position empty
             {
                 Position pos(i / __width, i% __width);
-                __grid[i] = new Food(*this, pos, Game::STARTING_AGENT_ENERGY);
+                __grid[i] = new Food(*this, pos, Game::STARTING_RESOURCE_CAPACITY);
                 numFoods--;
             }
         }
     }
 
-    Game::Game()
+    Game::Game(): __width(MIN_WIDTH), __height(MIN_HEIGHT) ,__grid(__width*__height, nullptr)
     {
-        __width = MIN_WIDTH;
-        __height = MIN_HEIGHT;
-        int size = (__width*__height);
+//        __width = MIN_WIDTH;
+//        __height = MIN_HEIGHT;
+        __round = 0;
+        //int size = (__width*__height);
 
-        __grid.assign(size, nullptr);
-        populate();
+
+       // __grid.assign(size, nullptr);
+
 
     }
 
-    Game::Game(unsigned width, unsigned height, bool manual)
+    Game::Game(unsigned width, unsigned height, bool manual): __width(width), __height(height),__grid(__width*__height, nullptr)
     {
-        __width = width;
-        __height = height;
-        int size = (__width*__height);
+//        __width = width;
+//        __height = height;
+//        int size = (__width*__height);
 
-        __grid.assign(size, nullptr);
+        //__grid.assign(size, nullptr);
+        populate();
     }
 
     Game::Game(const Game &another)
     {
-
+        __verbose = another.__verbose;
     }
 
 
@@ -335,58 +338,84 @@ namespace Gaming{
 
     const Surroundings Game::getSurroundings(const Position &pos) const
     {
-        Surroundings s1;
+        Surroundings s;
         int count = 0;
         unsigned int vectorPos;
+        unsigned int newPos;
+        int x = pos.x;
+        int y = pos.y;
+        int w = __width;
+        int h = __height;
 
 
-        vectorPos = (this->__width*pos.x+(pos.y+1));
+        Position p(pos.x-1, pos.y);
+        vectorPos = (this->__width*pos.x+(pos.y));
+        newPos = vectorPos;
 
-        auto it = __grid[(vectorPos-(__width+1))];
+        //auto it = __grid[(vectorPos-(__width+1))];
 
-        for(count; count <= 3; count++)
+
+        for(count; count < 3; count++)
         {
-            if(it == nullptr)
+            if(x == __height || x == 0 || y == __width || y == 0)
             {
-                s1.array[count] = EMPTY;
+                s.array[count] = PieceType::INACCESSIBLE ;
+            }
+            else if(__grid[newPos] != nullptr)
+            {
+               // s.array[count] = it->getType();
+                s.array[count] = __grid[newPos]->getType();
+
             }
             else
             {
-                s1.array[count] = ((it)->getType());
+                s.array[count] = PieceType::EMPTY ;
             }
 
-            it++;
+            newPos++;
         }
 
-        it = __grid[(vectorPos-1)];
+        newPos = (vectorPos-1);
 
-        for(count; count <= 6; count++)
+        for(count; count < 6; count++)
         {
-            if(it == nullptr)
+            if(x == __height || x == 0 || y == __width || y == 0)
             {
-                s1.array[count] = EMPTY;
+                s.array[count] = PieceType::INACCESSIBLE ;
+            }
+            else if( count == vectorPos )
+            {
+                s.array[count] = PieceType::SELF;
+            }
+            else if(__grid[newPos] != nullptr)
+            {
+                s.array[count] = __grid[newPos]->getType();
             }
             else
             {
-                s1.array[count] = ((it)->getType());
+                s.array[count] = PieceType::EMPTY ;
             }
-            it++;
+            newPos++;
         }
 
-        it = __grid[(vectorPos+(__width-1))];
+       newPos = (vectorPos+(__width-1));
 
-        for(count; count <= 9; count++)
+        for(count; count < 9; count++)
         {
-            if(it == nullptr)
+            if(x == __height || x == 0 || y == __width || y == 0)
             {
-                s1.array[count] = EMPTY;
+                s.array[count] = PieceType::INACCESSIBLE ;
             }
+            else if(__grid[newPos] != nullptr)
+            {
+                s.array[count] = __grid[newPos]->getType();
 
+            }
             else
             {
-                s1.array[count] = ((it)->getType());
+                s.array[count] = PieceType::EMPTY;
             }
-            it++;
+            newPos++;
         }
 
 
@@ -534,23 +563,34 @@ namespace Gaming{
 
     void Game::round()
     {
+        Surroundings s;
         auto it = __grid.begin();
+
 
         for(; it != __grid.end(); it++)
         {
-            (*it)->getTurned();
-            (*it)->setTurned(true);
-            if((*it)->isViable() == false)
+            s = (getSurroundings((*it)->getPosition()));
+            ActionType ac;
+            if( *it != nullptr || (*it)->isViable())
             {
-                delete(*it);
+                if((*it)->getTurned() == false)
+                {
+                    (*it)->setTurned(true);
+                    ac = (*it)->takeTurn(s);
+                }
+
+                if ((*it)->isViable() == false) {
+                    delete (*it);
+                }
             }
+
         }
         for(; it != __grid.end(); it++)
         {
             if(*it != nullptr)
             {
                 (*it)->age();
-                (*it)->setTurned(false);
+                (*it)->setTurned(true);
 
             }
         }
@@ -566,6 +606,9 @@ namespace Gaming{
         {
             round();
         }
+        __round++;
+
+        __status = Status::OVER;
 
     }
 

@@ -23,6 +23,7 @@ namespace Gaming{
     {
         double consume = (__capacity*Advantage::ADVANTAGE_MULT_FACTOR);
         __capacity = 0;
+        finish();
 
         return consume;
     }
@@ -30,12 +31,18 @@ namespace Gaming{
     void Resource::age()
     {
 
-        __capacity = (__capacity/RESOURCE_SPOIL_FACTOR);
-
         if(__capacity == 0)
         {
             finish();
+            delete this;
         }
+
+        else
+        {
+            __capacity = (__capacity/RESOURCE_SPOIL_FACTOR);
+        }
+
+
     }
 
     ActionType Resource::takeTurn(const Surroundings &s) const
@@ -48,7 +55,10 @@ namespace Gaming{
         return *this;
     }
 
-    Piece &Resource::interact(Agent *agent) {
+    Piece &Resource::interact(Agent *agent)
+    {
+        this->finish();
+        this->__capacity = 0;
         return *this;
     }
 

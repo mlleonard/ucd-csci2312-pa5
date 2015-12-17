@@ -26,6 +26,7 @@ namespace Gaming{
         if (__energy == 0)
         {
             finish();
+            delete this;
         }
     }
 
