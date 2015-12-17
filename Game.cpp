@@ -364,273 +364,299 @@ namespace Gaming{
 //        }
 
 
-        if(pos.x == 0)
+//        if(pos.x == 0)
+//        {
+//            if(pos.y == 0 )
+//            {
+//                s.array[0] = PieceType::INACCESSIBLE;
+//                s.array[1] = PieceType::INACCESSIBLE;
+//                s.array[2] = PieceType::INACCESSIBLE;
+//
+//                newPos = (vectorPos-1);
+//                if(__grid[newPos] != nullptr)
+//                {
+//                    s.array[3] = PieceType::INACCESSIBLE;
+//                }
+//                else{ s.array[3] == PieceType::EMPTY; }
+//                newPos++;
+//                s.array[4] = PieceType::SELF;
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[5] = __grid[newPos]->getType();}
+//                else{ s.array[5] == PieceType::EMPTY; }
+//
+//                newPos = (vectorPos+(__width-1));
+//                s.array[6] = PieceType::INACCESSIBLE;
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[7] = __grid[newPos]->getType();}
+//                else{ s.array[7] == PieceType::EMPTY; }
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[8] = __grid[newPos]->getType();}
+//                else{ s.array[8] == PieceType::EMPTY; }
+//
+//            }
+//            else if( ((pos.y)+1) == __width)
+//            {
+//                s.array[0] = PieceType::INACCESSIBLE;
+//                s.array[1] = PieceType::INACCESSIBLE;
+//                s.array[2] = PieceType::INACCESSIBLE;
+//
+//                newPos = (vectorPos-1);
+//                if(__grid[newPos] != nullptr)
+//                {s.array[3] = __grid[newPos]->getType();}
+//                else{ s.array[3] == PieceType::EMPTY; }
+//                newPos++;
+//                s.array[4] = PieceType::SELF;
+//                newPos++;
+//                s.array[5] = PieceType::INACCESSIBLE;
+//
+//                newPos = (vectorPos+(__width-1));
+//                if(__grid[newPos] != nullptr)
+//                {s.array[6] = __grid[newPos]->getType();}
+//                else{ s.array[3] == PieceType::EMPTY; }
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[7] = __grid[newPos]->getType();}
+//                else{ s.array[3] == PieceType::EMPTY; }
+//                newPos++;
+//                s.array[8] = PieceType::INACCESSIBLE ;
+//            }
+//            else
+//            {
+//                s.array[0] = PieceType::INACCESSIBLE;
+//                s.array[1] = PieceType::INACCESSIBLE;
+//                s.array[2] = PieceType::INACCESSIBLE;
+//
+//                newPos = (vectorPos-1);
+//                if(__grid[newPos] != nullptr)
+//                {s.array[3] = __grid[newPos]->getType();}
+//                else{ s.array[3] == PieceType::EMPTY; }
+//                newPos++;
+//                s.array[4] = PieceType::SELF;
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[5] = __grid[newPos]->getType();}
+//                else{ s.array[5] == PieceType::EMPTY; }
+//
+//                newPos = (vectorPos+(__width-1));
+//                if(__grid[newPos] != nullptr)
+//                {s.array[6] = __grid[newPos]->getType();}
+//                else{ s.array[6] == PieceType::EMPTY; }
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[7] = __grid[newPos]->getType();}
+//                else{ s.array[7] == PieceType::EMPTY; }
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[8] = __grid[newPos]->getType();}
+//                else{ s.array[8] == PieceType::EMPTY; }
+//
+//            }
+//        }
+//        else if(pos.y == 0)
+//        {
+//            if(pos.x == 0)
+//            {
+//                s.array[0] = PieceType::INACCESSIBLE;
+//                s.array[1] = PieceType::INACCESSIBLE;
+//                s.array[2] = PieceType::INACCESSIBLE;
+//
+//                newPos = (vectorPos-1);
+//                s.array[3] = PieceType::INACCESSIBLE;
+//                newPos++;
+//                s.array[4] = PieceType::SELF;
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[5] = __grid[newPos]->getType();}
+//                else{ s.array[5] == PieceType::EMPTY; }
+//
+//                newPos = (vectorPos+(__width-1));
+//                s.array[6] = PieceType::INACCESSIBLE;
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[7] = __grid[newPos]->getType();}
+//                else{ s.array[7] == PieceType::EMPTY; }
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[8] = __grid[newPos]->getType();}
+//                else{ s.array[8] == PieceType::EMPTY; }
+//
+//            }
+//            else if(((pos.x)+1) == __height)
+//            {
+//                s.array[0] = PieceType::INACCESSIBLE;
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[1] = __grid[newPos]->getType();}
+//                else{ s.array[1] == PieceType::EMPTY; }
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[2] = __grid[newPos]->getType();}
+//                else{ s.array[2] == PieceType::EMPTY; }
+//
+//                newPos = (vectorPos-1);
+//                s.array[3] = PieceType::INACCESSIBLE;
+//                newPos++;
+//                s.array[4] = PieceType::SELF;
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[5] = __grid[newPos]->getType();}
+//                else{ s.array[5] == PieceType::EMPTY; }
+//
+//                newPos = (vectorPos+(__width-1));
+//                s.array[6] = PieceType::INACCESSIBLE;
+//                s.array[7] = PieceType::INACCESSIBLE;
+//                s.array[8] = PieceType::INACCESSIBLE;
+//            }
+//            else
+//            {
+//                s.array[0] = PieceType::INACCESSIBLE;
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[1] = __grid[newPos]->getType();}
+//                else{ s.array[1] == PieceType::EMPTY; }
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[2] = __grid[newPos]->getType();}
+//                else{ s.array[2] == PieceType::EMPTY; }
+//
+//                newPos = (vectorPos-1);
+//                s.array[3] = PieceType::INACCESSIBLE;
+//                newPos++;
+//                s.array[4] = PieceType::SELF;
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[5] = __grid[newPos]->getType();}
+//                else{ s.array[5] == PieceType::EMPTY; }
+//
+//                newPos = (vectorPos+(__width-1));
+//                s.array[6] = PieceType::INACCESSIBLE;
+//                newPos++;
+//                {s.array[7] = __grid[newPos]->getType();}
+//                newPos++;
+//                if(__grid[newPos] != nullptr)
+//                {s.array[8] = __grid[newPos]->getType();}
+//                else{ s.array[8] == PieceType::EMPTY; }
+//
+//
+//            }
+//
+//        }
+//
+//        else
+//        {
+//            if(__grid[newPos] != nullptr)
+//            {s.array[0] = __grid[newPos]->getType();}
+//            else{ s.array[0] == PieceType::EMPTY; }
+//            newPos++;
+//            if(__grid[newPos] != nullptr)
+//            {s.array[1] = __grid[newPos]->getType();}
+//            else{ s.array[1] == PieceType::EMPTY; }
+//            newPos++;
+//            if(__grid[newPos] != nullptr)
+//            {s.array[2] = __grid[newPos]->getType() ;}
+//            else{ s.array[2] == PieceType::EMPTY; }
+//
+//            newPos = (vectorPos-1);
+//            if(__grid[newPos] != nullptr)
+//            {s.array[3] = __grid[newPos]->getType();}
+//            else{ s.array[3] == PieceType::EMPTY; }
+//            newPos++;
+//            s.array[4] = PieceType::SELF ;
+//            newPos++;
+//            if(__grid[newPos] != nullptr)
+//            {s.array[5] = __grid[newPos]->getType() ;}
+//            else{ s.array[5] == PieceType::EMPTY; }
+//
+//            newPos = (vectorPos+(__width-1));
+//            if(__grid[newPos] != nullptr)
+//            {s.array[6] = __grid[newPos]->getType();}
+//            else{ s.array[6] == PieceType::EMPTY; }
+//            newPos++;
+//            if(__grid[newPos] != nullptr)
+//            {s.array[7] = __grid[newPos]->getType();}
+//            else{ s.array[7] == PieceType::EMPTY; }
+//            newPos++;
+//            if(__grid[newPos] != nullptr)
+//            {s.array[8] = __grid[newPos]->getType() ;}
+//            else{ s.array[8] == PieceType::EMPTY; }
+//        }
+//
+
+
+
+
+
+        for(count; count < 3; count++)
         {
-            if(pos.y == 0 )
+            if( vectorPos <= __width  )
             {
-                s.array[0] = PieceType::INACCESSIBLE;
-                s.array[1] = PieceType::INACCESSIBLE;
-                s.array[2] = PieceType::INACCESSIBLE;
-
-                newPos = (vectorPos-1);
-                if(newPos != nullptr)
-                {
-                    s.array[3] = PieceType::INACCESSIBLE;
-                }
-                else{ s.array[3] == PieceType::EMPTY; }
-                newPos++;
-                s.array[4] = PieceType::SELF;
-                newPos++;
-                if(newPos != nullptr)
-                {s.array[5] = __grid[newPos]->getType();}
-                else{ s.array[5] == PieceType::EMPTY; }
-
-                newPos = (vectorPos+(__width-1));
-                s.array[6] = PieceType::INACCESSIBLE;
-                newPos++;
-                if(newPos != nullptr)
-                {s.array[7] = __grid[newPos]->getType();}
-                else{ s.array[7] == PieceType::EMPTY; }
-                newPos++;
-                if(newPos != nullptr)
-                {s.array[8] = __grid[newPos]->getType();}
-                else{ s.array[8] == PieceType::EMPTY; }
-
+                s.array[count] = PieceType::INACCESSIBLE ;
             }
-            else if( ((pos.y)+1) == __width)
+
+            else if(__grid[newPos] != nullptr)
             {
-                s.array[0] = PieceType::INACCESSIBLE;
-                s.array[1] = PieceType::INACCESSIBLE;
-                s.array[2] = PieceType::INACCESSIBLE;
-
-                newPos = (vectorPos-1);
-                if(newPos != nullptr)
-                {s.array[3] = __grid[newPos]->getType();}
-                newPos++;
-                s.array[4] = PieceType::SELF;
-                newPos++;
-                s.array[5] = PieceType::INACCESSIBLE;
-
-                newPos = (vectorPos+(__width-1));
-                if(newPos != nullptr)
-                {s.array[6] = __grid[newPos]->getType();}
-                newPos++;
-                if(newPos != nullptr)
-                {s.array[7] = __grid[newPos]->getType();}
-                newPos++;
-                s.array[8] = PieceType::INACCESSIBLE ;
+               // s.array[count] = it->getType();
+                s.array[count] = __grid[newPos]->getType();
             }
             else
             {
-                s.array[0] = PieceType::INACCESSIBLE;
-                s.array[1] = PieceType::INACCESSIBLE;
-                s.array[2] = PieceType::INACCESSIBLE;
-
-                newPos = (vectorPos-1);
-                if(newPos != nullptr)
-                {s.array[3] = __grid[newPos]->getType();}
-                newPos++;
-                s.array[4] = PieceType::SELF;
-                newPos++;
-                if(newPos != nullptr)
-                {s.array[5] = __grid[newPos]->getType();}
-
-                newPos = (vectorPos+(__width-1));
-                if(newPos != nullptr)
-                {s.array[6] = __grid[newPos]->getType();}
-                newPos++;
-                if(newPos != nullptr)
-                {s.array[7] = __grid[newPos]->getType();}
-                newPos++;
-                if(newPos != nullptr)
-                {s.array[8] = __grid[newPos]->getType();}
-
+                s.array[count] = PieceType::EMPTY ;
             }
+
+            ++newPos;
         }
-        else if(pos.y == 0)
+
+        newPos = (vectorPos-1);
+
+        for(count; count < 6; count++)
         {
-            if(pos.x == 0)
+            if( count == 4 )
             {
-                s.array[0] = PieceType::INACCESSIBLE;
-                s.array[1] = PieceType::INACCESSIBLE;
-                s.array[2] = PieceType::INACCESSIBLE;
-
-                newPos = (vectorPos-1);
-                s.array[3] = PieceType::INACCESSIBLE;
-                newPos++;
-                s.array[4] = PieceType::SELF;
-                newPos++;
-                if(newPos != nullptr)
-                {s.array[5] = __grid[newPos]->getType();}
-
-                newPos = (vectorPos+(__width-1));
-                s.array[6] = PieceType::INACCESSIBLE;
-                newPos++;
-                if(newPos != nullptr)
-                {s.array[7] = __grid[newPos]->getType();}
-                newPos++;
-                if(newPos != nullptr)
-                {s.array[8] = __grid[newPos]->getType();}
-
+                s.array[count] = PieceType::SELF;
             }
-            else if(((pos.x)+1) == __height)
+
+            else if(((vectorPos)-1)%(__width) == 0 && count == 3)
             {
-                s.array[0] = PieceType::INACCESSIBLE;
-                newPos++;
-                if(newPos != nullptr)
-                s.array[1] = __grid[newPos]->getType();
-                newPos++;
-                if(newPos != nullptr)
-                s.array[2] = __grid[newPos]->getType();
+                s.array[count] = PieceType::INACCESSIBLE ;
+            }
+            else if( newPos%__width == 0 && count == 5)
+            {
+                s.array[count] = PieceType::INACCESSIBLE;
+            }
 
-                newPos = (vectorPos-1);
-                s.array[3] = PieceType::INACCESSIBLE;
-                newPos++;
-                s.array[4] = PieceType::SELF;
-                newPos++;
-                if(newPos != nullptr)
-                s.array[5] = __grid[newPos]->getType();
-
-                newPos = (vectorPos+(__width-1));
-                s.array[6] = PieceType::INACCESSIBLE;
-                s.array[7] = PieceType::INACCESSIBLE;
-                s.array[8] = PieceType::INACCESSIBLE;
+            else if(__grid[newPos] != nullptr)
+            {
+                s.array[count] = __grid[newPos]->getType();
             }
             else
             {
-                s.array[0] = PieceType::INACCESSIBLE;
-                newPos++;
-                if(newPos != nullptr)
-                s.array[1] = __grid[newPos]->getType();
-                newPos++;
-                if(newPos != nullptr)
-                s.array[2] = __grid[newPos]->getType();
+                s.array[count] = PieceType::EMPTY ;
+            }
+            newPos++;
+        }
 
-                newPos = (vectorPos-1);
-                s.array[3] = PieceType::INACCESSIBLE;
-                newPos++;
-                s.array[4] = PieceType::SELF;
-                newPos++;
-                if(newPos != nullptr)
-                s.array[5] = __grid[newPos]->getType();
+       newPos = (vectorPos+(__width-1));
 
-                newPos = (vectorPos+(__width-1));
-                s.array[6] = PieceType::INACCESSIBLE;
-                newPos++;
-                s.array[7] = __grid[newPos]->getType();
-                newPos++;
-                if(newPos != nullptr)
-                s.array[8] = __grid[newPos]->getType();
-
+        for(count; count < 9; count++)
+        {
+            if(newPos > ((__height*__width)-__width))
+            {
+                s.array[count] = PieceType::INACCESSIBLE ;
+            }
+            else if(__grid[newPos] != nullptr)
+            {
+                s.array[count] = __grid[newPos]->getType();
 
             }
-
+            else
+            {
+                s.array[count] = PieceType::EMPTY;
+            }
+            newPos++;
         }
-
-        else
-        {
-            if(newPos != nullptr)
-            s.array[0] = __grid[newPos]->getType();
-            newPos++;
-            if(newPos != nullptr)
-            s.array[1] = __grid[newPos]->getType();
-            newPos++;
-            if(newPos != nullptr)
-            s.array[2] = __grid[newPos]->getType() ;
-
-            newPos = (vectorPos-1);
-            if(newPos != nullptr)
-            s.array[3] = __grid[newPos]->getType();
-            newPos++;
-            s.array[4] = PieceType::SELF ;
-            newPos++;
-            if(newPos != nullptr)
-            s.array[5] = __grid[newPos]->getType() ;
-
-            newPos = (vectorPos+(__width-1));
-            if(newPos != nullptr)
-            s.array[6] = __grid[newPos]->getType();
-            newPos++;
-            if(newPos != nullptr)
-            s.array[7] = __grid[newPos]->getType();
-            newPos++;
-            if(newPos != nullptr)
-            s.array[8] = __grid[newPos]->getType() ;
-        }
-
-
-
-
-
-
-//        for(count; count < 3; count++)
-//        {
-//            if( vectorPos <= __width ||  )
-//            {
-//                s.array[count] = PieceType::INACCESSIBLE ;
-//            }
-//
-//            else if(__grid[newPos] != nullptr)
-//            {
-//               // s.array[count] = it->getType();
-//                s.array[count] = __grid[newPos]->getType();
-//            }
-//            else
-//            {
-//                s.array[count] = PieceType::EMPTY ;
-//            }
-//
-//            ++newPos;
-//        }
-//
-//        newPos = (vectorPos-1);
-//
-//        for(count; count < 6; count++)
-//        {
-//            if( count == 4 )
-//            {
-//                s.array[count] = PieceType::SELF;
-//            }
-//
-//            else if(((vectorPos)-1)%(__width) == 0 && count == 3)
-//            {
-//                s.array[count] = PieceType::INACCESSIBLE ;
-//            }
-//            else if( newPos%__width == 0 && count == 5)
-//            {
-//                s.array[count] = PieceType::INACCESSIBLE;
-//            }
-//
-//            else if(__grid[newPos] != nullptr)
-//            {
-//                s.array[count] = __grid[newPos]->getType();
-//            }
-//            else
-//            {
-//                s.array[count] = PieceType::EMPTY ;
-//            }
-//            newPos++;
-//        }
-//
-//       newPos = (vectorPos+(__width-1));
-//
-//        for(count; count < 9; count++)
-//        {
-//            if(newPos > ((__height*__width)-__width))
-//            {
-//                s.array[count] = PieceType::INACCESSIBLE ;
-//            }
-//            else if(__grid[newPos] != nullptr)
-//            {
-//                s.array[count] = __grid[newPos]->getType();
-//
-//            }
-//            else
-//            {
-//                s.array[count] = PieceType::EMPTY;
-//            }
-//            newPos++;
-//        }
 
 
         return s;
