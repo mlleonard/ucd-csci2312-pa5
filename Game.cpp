@@ -360,12 +360,12 @@ namespace Gaming{
             {
                 s.array[i] = PieceType::INACCESSIBLE;
             }
-            return Gaming::Surroundings();
+            return s;
         }
 
         for(count; count < 3; count++)
         {
-            if(x == __height || x == 0 || y == __width || y == 0)
+            if( newPos <= __width )
             {
                 s.array[count] = PieceType::INACCESSIBLE ;
             }
@@ -380,21 +380,23 @@ namespace Gaming{
                 s.array[count] = PieceType::EMPTY ;
             }
 
-            newPos++;
+            ++newPos;
         }
 
         newPos = (vectorPos-1);
 
         for(count; count < 6; count++)
         {
-            if(x == __height || x == 0 || y == __width || y == 0)
-            {
-                s.array[count] = PieceType::INACCESSIBLE ;
-            }
-            else if( count == vectorPos )
+            if( count == 4 )
             {
                 s.array[count] = PieceType::SELF;
             }
+
+            else if((((newPos)-1)%(__width) == 0) || newPos%__width == 0)
+            {
+                s.array[count] = PieceType::INACCESSIBLE ;
+            }
+
             else if(__grid[newPos] != nullptr)
             {
                 s.array[count] = __grid[newPos]->getType();
@@ -410,7 +412,7 @@ namespace Gaming{
 
         for(count; count < 9; count++)
         {
-            if(x >= __height || x <= 0 || y >= __width || y <= 0)
+            if(newPos > ((__height*__width)-__width))
             {
                 s.array[count] = PieceType::INACCESSIBLE ;
             }
@@ -427,7 +429,7 @@ namespace Gaming{
         }
 
 
-        return Gaming::Surroundings();
+        return s;
     }
 
     const ActionType Game::reachSurroundings(const Position &from, const Position &to)
@@ -634,7 +636,8 @@ namespace Gaming{
             }
             else
             {
-                std::cout << *game.__grid[i] << "   ";
+
+              //  std::cout << *game.__grid[i] << "   ";
                 count++;
             }
             os << "]";
